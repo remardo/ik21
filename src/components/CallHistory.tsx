@@ -238,7 +238,7 @@ function CallDetails({ call }: { call: any }) {
           <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
             <PlayCircle className="w-8 h-8 text-blue-600" />
             <div className="flex-1">
-              <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+              <div className="h-2 bg-muted rounded-full overflow-hidden">
                 <div className="h-full w-1/3 bg-blue-600"></div>
               </div>
               <p className="text-muted-foreground text-sm mt-1">0:52 / {call.duration}</p>

@@ -75,7 +75,7 @@ export function UploadData() {
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Upload Area */}
-          <div className="border-2 border-dashed border-slate-300 rounded-lg p-12 text-center hover:border-blue-400 transition-colors">
+          <div className="border-2 border-dashed border-border rounded-lg p-12 text-center hover:border-blue-400 transition-colors">
             <input
               type="file"
               id="file-upload"
@@ -89,10 +89,10 @@ export function UploadData() {
                   <Upload className="w-8 h-8 text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-slate-900 mb-1">
+                  <p className="text-foreground mb-1">
                     Нажмите для выбора файла или перетащите сюда
                   </p>
-                  <p className="text-slate-500 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Поддерживаются форматы: .xlsx, .xls (максимум 10 МБ)
                   </p>
                 </div>
@@ -107,8 +107,8 @@ export function UploadData() {
               {uploadStatus === 'uploading' && (
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-slate-700">Загрузка файла...</span>
-                    <span className="text-slate-600">{uploadProgress}%</span>
+                    <span className="text-foreground">Загрузка файла...</span>
+                    <span className="text-muted-foreground">{uploadProgress}%</span>
                   </div>
                   <Progress value={uploadProgress} />
                 </div>
@@ -157,21 +157,21 @@ export function UploadData() {
             {recentUploads.map((upload) => (
               <div 
                 key={upload.id}
-                className="flex items-center justify-between p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
+                className="flex items-center justify-between p-4 bg-muted rounded-lg hover:bg-muted transition-colors"
               >
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                     <FileSpreadsheet className="w-5 h-5 text-green-600" />
                   </div>
                   <div>
-                    <p className="text-slate-900">{upload.filename}</p>
-                    <p className="text-slate-500 text-sm">{upload.uploadedAt}</p>
+                    <p className="text-foreground">{upload.filename}</p>
+                    <p className="text-muted-foreground text-sm">{upload.uploadedAt}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-6">
                   <div className="text-right">
-                    <p className="text-slate-900">{upload.records} записей</p>
-                    <p className="text-slate-500 text-sm">{upload.pipelineRuns} пайплайнов</p>
+                    <p className="text-foreground">{upload.records} записей</p>
+                    <p className="text-muted-foreground text-sm">{upload.pipelineRuns} пайплайнов</p>
                   </div>
                   <Badge className="bg-green-100 text-green-700">
                     Обработан
@@ -189,12 +189,12 @@ export function UploadData() {
           <CardTitle>Подключение к Yandex Object Storage</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+          <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
               <div>
-                <p className="text-slate-900">Bucket: debtor-lists</p>
-                <p className="text-slate-500 text-sm">Регион: ru-central1</p>
+                <p className="text-foreground">Bucket: debtor-lists</p>
+                <p className="text-muted-foreground text-sm">Регион: ru-central1</p>
               </div>
             </div>
             <Badge className="bg-green-100 text-green-700">Подключено</Badge>
@@ -204,7 +204,7 @@ export function UploadData() {
             <AlertCircle className="w-4 h-4" />
             <AlertDescription>
               При загрузке файла в S3-бакет автоматически запускается Mastra Pipeline 
-              <code className="mx-1 px-2 py-0.5 bg-slate-100 rounded text-sm">process_debtors</code>
+              <code className="mx-1 px-2 py-0.5 bg-muted rounded text-sm">process_debtors</code>
             </AlertDescription>
           </Alert>
         </CardContent>

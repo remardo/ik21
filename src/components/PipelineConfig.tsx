@@ -133,7 +133,7 @@ export function PipelineConfig() {
                   <CardDescription>{pipeline.description}</CardDescription>
                 </div>
                 <Badge className={`${
-                  pipeline.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-700'
+                  pipeline.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-muted text-foreground'
                 }`}>
                   {pipeline.status === 'active' ? 'Активен' : 'Остановлен'}
                 </Badge>
@@ -142,19 +142,19 @@ export function PipelineConfig() {
             <CardContent>
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <p className="text-slate-500 text-sm">Запусков</p>
-                  <p className="text-slate-900">{pipeline.totalRuns.toLocaleString()}</p>
+                  <p className="text-muted-foreground text-sm">Запусков</p>
+                  <p className="text-foreground">{pipeline.totalRuns.toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-slate-500 text-sm">Успешность</p>
-                  <p className="text-slate-900">{pipeline.successRate}%</p>
+                  <p className="text-muted-foreground text-sm">Успешность</p>
+                  <p className="text-foreground">{pipeline.successRate}%</p>
                 </div>
                 <div>
-                  <p className="text-slate-500 text-sm">Ср. время</p>
-                  <p className="text-slate-900">{pipeline.avgDuration}</p>
+                  <p className="text-muted-foreground text-sm">Ср. время</p>
+                  <p className="text-foreground">{pipeline.avgDuration}</p>
                 </div>
               </div>
-              <div className="mt-4 flex items-center gap-2 text-sm text-slate-600">
+              <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
                 <Clock className="w-4 h-4" />
                 <span>Последний запуск: {pipeline.lastRun}</span>
               </div>
@@ -170,7 +170,7 @@ export function PipelineConfig() {
             <div>
               <CardTitle>{selectedPipeline.name}</CardTitle>
               <CardDescription className="mt-1">
-                Pipeline ID: <code className="text-slate-700">{selectedPipeline.id}</code>
+                Pipeline ID: <code className="text-foreground">{selectedPipeline.id}</code>
               </CardDescription>
             </div>
             <div className="flex gap-2">
@@ -197,12 +197,12 @@ export function PipelineConfig() {
             <TabsContent value="config" className="space-y-6 mt-6">
               {/* Trigger Configuration */}
               <div className="space-y-3">
-                <h3 className="text-slate-900">Триггер запуска</h3>
-                <div className="p-4 bg-slate-50 rounded-lg">
+                <h3 className="text-foreground">Триггер запуска</h3>
+                <div className="p-4 bg-muted rounded-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-slate-900">Тип триггера</p>
-                      <p className="text-slate-600 text-sm">{selectedPipeline.trigger}</p>
+                      <p className="text-foreground">Тип триггера</p>
+                      <p className="text-muted-foreground text-sm">{selectedPipeline.trigger}</p>
                     </div>
                     <Button variant="outline" size="sm">
                       <Settings className="w-4 h-4 mr-2" />
@@ -214,26 +214,26 @@ export function PipelineConfig() {
 
               {/* Settings */}
               <div className="space-y-4">
-                <h3 className="text-slate-900">Настройки</h3>
+                <h3 className="text-foreground">Настройки</h3>
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                  <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
                     <div>
                       <Label htmlFor="retry">Повторные попытки при ошибке</Label>
-                      <p className="text-slate-500 text-sm">Автоматически перезапускать при сбое</p>
+                      <p className="text-muted-foreground text-sm">Автоматически перезапускать при сбое</p>
                     </div>
                     <Switch id="retry" defaultChecked />
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                  <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
                     <div>
                       <Label htmlFor="logging">Расширенное логирование</Label>
-                      <p className="text-slate-500 text-sm">Сохранять подробные логи выполнения</p>
+                      <p className="text-muted-foreground text-sm">Сохранять подробные логи выполнения</p>
                     </div>
                     <Switch id="logging" defaultChecked />
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                  <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
                     <div>
                       <Label htmlFor="parallel">Параллельное выполнение</Label>
-                      <p className="text-slate-500 text-sm">Максимум 50 одновременных экземпляров</p>
+                      <p className="text-muted-foreground text-sm">Максимум 50 одновременных экземпляров</p>
                     </div>
                     <Switch id="parallel" defaultChecked />
                   </div>
@@ -244,7 +244,7 @@ export function PipelineConfig() {
             <TabsContent value="yaml" className="mt-6">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <p className="text-slate-700">Конфигурация пайплайна</p>
+                  <p className="text-foreground">Конфигурация пайплайна</p>
                   <Button variant="outline" size="sm">
                     <Code className="w-4 h-4 mr-2" />
                     Редактировать
@@ -273,7 +273,7 @@ export function PipelineConfig() {
                   { id: 'run_004', status: 'success', duration: '2m 58s', time: '14:15:22', records: 1 },
                   { id: 'run_005', status: 'success', duration: '3m 34s', time: '14:10:45', records: 1 },
                 ].map((run) => (
-                  <div key={run.id} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                  <div key={run.id} className="flex items-center justify-between p-4 bg-muted rounded-lg">
                     <div className="flex items-center gap-4">
                       <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                         run.status === 'success' ? 'bg-green-100' : 'bg-red-100'
@@ -285,14 +285,14 @@ export function PipelineConfig() {
                         )}
                       </div>
                       <div>
-                        <p className="text-slate-900 font-mono text-sm">{run.id}</p>
-                        <p className="text-slate-500 text-sm">{run.time}</p>
+                        <p className="text-foreground font-mono text-sm">{run.id}</p>
+                        <p className="text-muted-foreground text-sm">{run.time}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-6">
                       <div className="text-right">
-                        <p className="text-slate-600 text-sm">Длительность</p>
-                        <p className="text-slate-900">{run.duration}</p>
+                        <p className="text-muted-foreground text-sm">Длительность</p>
+                        <p className="text-foreground">{run.duration}</p>
                       </div>
                       <Button variant="ghost" size="sm">Логи</Button>
                     </div>
@@ -303,7 +303,7 @@ export function PipelineConfig() {
 
             <TabsContent value="integrations" className="mt-6">
               <div className="space-y-3">
-                <p className="text-slate-700 mb-4">Сервисы, используемые в этом пайплайне</p>
+                <p className="text-foreground mb-4">Сервисы, используемые в этом пайплайне</p>
                 {[
                   { name: 'PostgreSQL', status: 'connected', description: 'База данных для хранения состояний' },
                   { name: 'Asterisk ARI', status: 'connected', description: 'Телефония и совершение звонков' },
@@ -311,14 +311,14 @@ export function PipelineConfig() {
                   { name: 'Yandex Object Storage', status: 'connected', description: 'Хранение аудиозаписей' },
                   { name: 'Yandex SpeechKit', status: 'connected', description: 'Транскрибация звонков' },
                 ].map((integration, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-4 bg-muted rounded-lg">
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                         <Activity className="w-5 h-5 text-blue-600" />
                       </div>
                       <div>
-                        <p className="text-slate-900">{integration.name}</p>
-                        <p className="text-slate-500 text-sm">{integration.description}</p>
+                        <p className="text-foreground">{integration.name}</p>
+                        <p className="text-muted-foreground text-sm">{integration.description}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">

@@ -170,7 +170,7 @@ export function DebtorsList() {
                   </div>
 
                   {/* Debt Amount - Large Display */}
-                  <div className="mb-4 p-4 bg-muted rounded-lg border border-slate-100">
+                  <div className="mb-4 p-4 bg-muted rounded-lg border border-border">
                     <div className="text-xs text-muted-foreground mb-1">Сумма задолженности</div>
                     <div className="text-2xl text-foreground flex items-baseline gap-1">
                       {debtor.debt.toLocaleString('ru-RU')}

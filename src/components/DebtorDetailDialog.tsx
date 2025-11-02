@@ -12,9 +12,9 @@ interface DebtorDetailDialogProps {
 }
 
 const InfoRow = ({ label, value, highlight = false }: { label: string; value: string | number | null | undefined; highlight?: boolean }) => (
-  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 py-2 border-b border-slate-100 last:border-0">
-    <div className="text-sm text-slate-500 sm:w-1/3">{label}</div>
-    <div className={`text-sm sm:w-2/3 ${highlight ? 'text-slate-900' : 'text-slate-700'}`}>
+  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 py-2 border-b border-border last:border-0">
+    <div className="text-sm text-muted-foreground sm:w-1/3">{label}</div>
+    <div className={`text-sm sm:w-2/3 ${highlight ? 'text-foreground' : 'text-muted-foreground'}`}>
       {value !== null && value !== undefined && value !== '' ? value : '—'}
     </div>
   </div>
@@ -24,7 +24,7 @@ const SectionCard = ({ title, icon: Icon, children }: { title: string; icon: any
   <Card className="mb-4">
     <CardHeader className="pb-3">
       <CardTitle className="flex items-center gap-2 text-lg">
-        <Icon className="w-5 h-5 text-slate-600" />
+        <Icon className="w-5 h-5 text-muted-foreground" />
         {title}
       </CardTitle>
     </CardHeader>
@@ -38,7 +38,7 @@ export function DebtorDetailDialog({ debtor, open, onOpenChange }: DebtorDetailD
   if (!debtor) return null;
 
   const statusConfig: Record<string, { label: string; color: string }> = {
-    new: { label: 'Новый', color: 'bg-slate-100 text-slate-700' },
+    new: { label: 'Новый', color: 'bg-muted text-foreground' },
     time_check: { label: 'Проверка времени', color: 'bg-cyan-100 text-cyan-700' },
     ready_to_call: { label: 'Готов к звонку', color: 'bg-blue-100 text-blue-700' },
     calling: { label: 'Звоним', color: 'bg-purple-100 text-purple-700' },
@@ -58,12 +58,12 @@ export function DebtorDetailDialog({ debtor, open, onOpenChange }: DebtorDetailD
                 <Badge className={statusConfig[debtor.status]?.color}>
                   {statusConfig[debtor.status]?.label}
                 </Badge>
-                <span className="text-sm text-slate-500">ID: {debtor.id}</span>
+                <span className="text-sm text-muted-foreground">ID: {debtor.id}</span>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-sm text-slate-500">Сумма задолженности</div>
-              <div className="text-3xl text-slate-900">
+              <div className="text-sm text-muted-foreground">Сумма задолженности</div>
+              <div className="text-3xl text-foreground">
                 {debtor.debt.toLocaleString('ru-RU')} ₽
               </div>
               <div className="flex items-center gap-1 mt-1 text-sm text-red-600">
@@ -260,7 +260,7 @@ export function DebtorDetailDialog({ debtor, open, onOpenChange }: DebtorDetailD
                 ))
               ) : (
                 <Card>
-                  <CardContent className="py-8 text-center text-slate-500">
+                  <CardContent className="py-8 text-center text-muted-foreground">
                     <Building2 className="w-12 h-12 mx-auto mb-3 text-slate-300" />
                     <p>Контрагенты не указаны</p>
                   </CardContent>
