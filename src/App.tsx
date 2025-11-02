@@ -6,6 +6,7 @@ import { PipelineConfig } from './components/PipelineConfig';
 import { UploadData } from './components/UploadData';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 import { LayoutDashboard, Users, Phone, Settings, Upload } from 'lucide-react';
+import { ThemeToggle } from './components/ThemeToggle';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -25,7 +26,7 @@ export default function App() {
                 <p className="text-muted-foreground text-sm">Управление через Mastra</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">`n              <ThemeToggle />
               <div className="px-3 py-1.5 bg-green-100 text-green-700 rounded-md text-sm">
                 Mastra: Активна
               </div>

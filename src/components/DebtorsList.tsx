@@ -13,17 +13,17 @@ import { Separator } from './ui/separator';
 import { DebtorDetailDialog } from './DebtorDetailDialog';
 import { debtors } from './debtors-mock-data';
 const statusConfig: Record<string, { label: string; color: string; borderColor: string }> = {
-  new: { label: 'Новый', color: 'bg-slate-100 text-slate-700', borderColor: 'border-slate-200' },
-  time_check: { label: 'Проверка времени', color: 'bg-cyan-100 text-cyan-700', borderColor: 'border-cyan-200' },
-  ready_to_call: { label: 'Готов к звонку', color: 'bg-blue-100 text-blue-700', borderColor: 'border-blue-200' },
-  calling: { label: 'Звоним', color: 'bg-purple-100 text-purple-700', borderColor: 'border-purple-300' },
-  success: { label: 'Успешно', color: 'bg-green-100 text-green-700', borderColor: 'border-green-200' },
-  fail_busy: { label: 'Занято', color: 'bg-orange-100 text-orange-700', borderColor: 'border-orange-200' },
-  fail_no_answer: { label: 'Не отвечает', color: 'bg-red-100 text-red-700', borderColor: 'border-red-200' },
+  new: { label: 'Новый', color: 'bg-muted text-foreground', borderColor: 'border-border' },
+  time_check: { label: 'Проверка времени', color: 'bg-cyan-100 text-cyan-700', borderColor: 'border-border' },
+  ready_to_call: { label: 'Готов к звонку', color: 'bg-blue-100 text-blue-700', borderColor: 'border-border' },
+  calling: { label: 'Звоним', color: 'bg-purple-100 text-purple-700', borderColor: 'border-border' },
+  success: { label: 'Успешно', color: 'bg-green-100 text-green-700', borderColor: 'border-border' },
+  fail_busy: { label: 'Занято', color: 'bg-orange-100 text-orange-700', borderColor: 'border-border' },
+  fail_no_answer: { label: 'Не отвечает', color: 'bg-red-100 text-red-700', borderColor: 'border-border' },
 };
 
 const priorityConfig: Record<string, { label: string; color: string }> = {
-  low: { label: 'Низкий', color: 'text-slate-500' },
+  low: { label: 'Низкий', color: 'text-muted-foreground' },
   medium: { label: 'Средний', color: 'text-yellow-600' },
   high: { label: 'Высокий', color: 'text-red-600' },
 };
@@ -63,7 +63,7 @@ export function DebtorsList() {
         <CardContent className="pt-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 placeholder="Поиск по имени или телефону..."
                 value={searchQuery}
@@ -104,7 +104,7 @@ export function DebtorsList() {
               </CardDescription>
             </div>
             <div className="flex gap-2">
-              <div className="flex border rounded-lg p-1 bg-slate-50">
+              <div className="flex border rounded-lg p-1 bg-muted">
                 <Button
                   variant={viewMode === 'cards' ? 'default' : 'ghost'}
                   size="sm"
@@ -153,10 +153,10 @@ export function DebtorsList() {
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-slate-900 truncate">
+                        <h3 className="text-foreground truncate">
                           {debtor.name}
                         </h3>
-                        <div className="flex items-center gap-1 text-xs text-slate-500 mt-0.5">
+                        <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
                           <AlertCircle className={`w-3 h-3 ${priorityConfig[debtor.priority].color}`} />
                           <span className={priorityConfig[debtor.priority].color}>
                             {priorityConfig[debtor.priority].label} приоритет
@@ -170,9 +170,9 @@ export function DebtorsList() {
                   </div>
 
                   {/* Debt Amount - Large Display */}
-                  <div className="mb-4 p-4 bg-slate-50 rounded-lg border border-slate-100">
-                    <div className="text-xs text-slate-500 mb-1">Сумма задолженности</div>
-                    <div className="text-2xl text-slate-900 flex items-baseline gap-1">
+                  <div className="mb-4 p-4 bg-muted rounded-lg border border-slate-100">
+                    <div className="text-xs text-muted-foreground mb-1">Сумма задолженности</div>
+                    <div className="text-2xl text-foreground flex items-baseline gap-1">
                       {debtor.debt.toLocaleString('ru-RU')}
                       <span className="text-lg">₽</span>
                     </div>
@@ -185,20 +185,20 @@ export function DebtorsList() {
                   {/* Contact Info */}
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2 text-sm">
-                      <Phone className="w-4 h-4 text-slate-400" />
-                      <span className="font-mono text-slate-700">{debtor.phone}</span>
+                      <Phone className="w-4 h-4 text-muted-foreground" />
+                      <span className="font-mono text-foreground">{debtor.phone}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
-                      <Mail className="w-4 h-4 text-slate-400" />
-                      <span className="text-slate-600 truncate">{debtor.email}</span>
+                      <Mail className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-muted-foreground truncate">{debtor.email}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
-                      <MapPin className="w-4 h-4 text-slate-400" />
-                      <span className="text-slate-600">{debtor.address}</span>
+                      <MapPin className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-muted-foreground">{debtor.address}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
-                      <Clock className="w-4 h-4 text-slate-400" />
-                      <span className="text-slate-600">{debtor.timezone}</span>
+                      <Clock className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-muted-foreground">{debtor.timezone}</span>
                     </div>
                   </div>
 
@@ -206,7 +206,7 @@ export function DebtorsList() {
 
                   {/* Attempts Progress */}
                   <div className="mb-4">
-                    <div className="flex items-center justify-between text-xs text-slate-600 mb-2">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
                       <span>Попыток звонков</span>
                       <span>{debtor.attempts} из {debtor.maxAttempts}</span>
                     </div>
@@ -215,14 +215,14 @@ export function DebtorsList() {
 
                   {/* Last Call Info */}
                   {debtor.lastCall && (
-                    <div className="text-xs text-slate-500 mb-4">
+                    <div className="text-xs text-muted-foreground mb-4">
                       Последний звонок: {debtor.lastCall}
                     </div>
                   )}
 
                   {/* Pipeline ID */}
                   <div className="mb-4">
-                    <code className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600 block truncate">
+                    <code className="text-xs bg-muted px-2 py-1 rounded text-muted-foreground block truncate">
                       {debtor.pipelineId}
                     </code>
                   </div>
@@ -298,9 +298,9 @@ export function DebtorsList() {
                       onClick={() => handleDebtorClick(debtor)}
                     >
                       <TableCell>{debtor.id}</TableCell>
-                      <TableCell className="text-slate-900">{debtor.name}</TableCell>
+                      <TableCell className="text-foreground">{debtor.name}</TableCell>
                       <TableCell className="font-mono text-sm">{debtor.phone}</TableCell>
-                      <TableCell className="text-slate-900">
+                      <TableCell className="text-foreground">
                         {debtor.debt.toLocaleString('ru-RU')} ₽
                       </TableCell>
                       <TableCell>
@@ -309,13 +309,13 @@ export function DebtorsList() {
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <span className="text-slate-600">{debtor.attempts}</span>
+                        <span className="text-muted-foreground">{debtor.attempts}</span>
                       </TableCell>
-                      <TableCell className="text-slate-500 text-sm">
+                      <TableCell className="text-muted-foreground text-sm">
                         {debtor.lastCall || '—'}
                       </TableCell>
                       <TableCell>
-                        <code className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-700">
+                        <code className="text-xs bg-muted px-2 py-1 rounded text-foreground">
                           {debtor.pipelineId}
                         </code>
                       </TableCell>

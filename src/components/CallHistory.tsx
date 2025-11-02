@@ -88,12 +88,12 @@ const statusConfig: Record<string, { label: string; color: string }> = {
   answered: { label: 'Отвечен', color: 'bg-green-100 text-green-700' },
   busy: { label: 'Занято', color: 'bg-orange-100 text-orange-700' },
   no_answer: { label: 'Не отвечает', color: 'bg-red-100 text-red-700' },
-  failed: { label: 'Ошибка', color: 'bg-slate-100 text-slate-700' },
+  failed: { label: 'Ошибка', color: 'bg-muted text-foreground' },
 };
 
 const sentimentConfig: Record<string, { label: string; color: string }> = {
   positive: { label: 'Позитивная', color: 'text-green-600' },
-  neutral: { label: 'Нейтральная', color: 'text-slate-600' },
+  neutral: { label: 'Нейтральная', color: 'text-muted-foreground' },
   negative: { label: 'Негативная', color: 'text-red-600' },
 };
 
@@ -112,7 +112,7 @@ export function CallHistory() {
       <Card>
         <CardContent className="pt-6">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
               placeholder="Поиск по имени или телефону..."
               value={searchQuery}
@@ -146,12 +146,12 @@ export function CallHistory() {
               <TableBody>
                 {filteredCalls.map((call) => (
                   <TableRow key={call.id}>
-                    <TableCell className="text-slate-600 text-sm">
+                    <TableCell className="text-muted-foreground text-sm">
                       {call.datetime}
                     </TableCell>
-                    <TableCell className="text-slate-900">{call.debtorName}</TableCell>
+                    <TableCell className="text-foreground">{call.debtorName}</TableCell>
                     <TableCell className="font-mono text-sm">{call.phone}</TableCell>
-                    <TableCell className="text-slate-600">{call.duration}</TableCell>
+                    <TableCell className="text-muted-foreground">{call.duration}</TableCell>
                     <TableCell>
                       <Badge className={statusConfig[call.status].color}>
                         {statusConfig[call.status].label}
@@ -164,7 +164,7 @@ export function CallHistory() {
                           <span className="text-blue-600 text-sm">Доступна</span>
                         </div>
                       ) : (
-                        <span className="text-slate-400 text-sm">—</span>
+                        <span className="text-muted-foreground text-sm">—</span>
                       )}
                     </TableCell>
                     <TableCell>
@@ -173,7 +173,7 @@ export function CallHistory() {
                           {sentimentConfig[call.sentiment].label}
                         </span>
                       ) : (
-                        <span className="text-slate-400 text-sm">—</span>
+                        <span className="text-muted-foreground text-sm">—</span>
                       )}
                     </TableCell>
                     <TableCell>
@@ -214,34 +214,34 @@ function CallDetails({ call }: { call: any }) {
       {/* Call Info */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <p className="text-slate-500 text-sm mb-1">ФИО должника</p>
-          <p className="text-slate-900">{call.debtorName}</p>
+          <p className="text-muted-foreground text-sm mb-1">ФИО должника</p>
+          <p className="text-foreground">{call.debtorName}</p>
         </div>
         <div>
-          <p className="text-slate-500 text-sm mb-1">Телефон</p>
-          <p className="text-slate-900 font-mono">{call.phone}</p>
+          <p className="text-muted-foreground text-sm mb-1">Телефон</p>
+          <p className="text-foreground font-mono">{call.phone}</p>
         </div>
         <div>
-          <p className="text-slate-500 text-sm mb-1">Дата и время</p>
-          <p className="text-slate-900">{call.datetime}</p>
+          <p className="text-muted-foreground text-sm mb-1">Дата и время</p>
+          <p className="text-foreground">{call.datetime}</p>
         </div>
         <div>
-          <p className="text-slate-500 text-sm mb-1">Длительность</p>
-          <p className="text-slate-900">{call.duration}</p>
+          <p className="text-muted-foreground text-sm mb-1">Длительность</p>
+          <p className="text-foreground">{call.duration}</p>
         </div>
       </div>
 
       {/* Recording */}
       {call.recording && (
         <div className="space-y-2">
-          <p className="text-slate-700">Аудиозапись</p>
-          <div className="flex items-center gap-3 p-4 bg-slate-50 rounded-lg">
+          <p className="text-foreground">Аудиозапись</p>
+          <div className="flex items-center gap-3 p-4 bg-muted rounded-lg">
             <PlayCircle className="w-8 h-8 text-blue-600" />
             <div className="flex-1">
               <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
                 <div className="h-full w-1/3 bg-blue-600"></div>
               </div>
-              <p className="text-slate-500 text-sm mt-1">0:52 / {call.duration}</p>
+              <p className="text-muted-foreground text-sm mt-1">0:52 / {call.duration}</p>
             </div>
             <Button variant="outline" size="sm">
               <Download className="w-4 h-4 mr-2" />
@@ -259,23 +259,23 @@ function CallDetails({ call }: { call: any }) {
             <TabsTrigger value="analysis">Анализ</TabsTrigger>
           </TabsList>
           <TabsContent value="transcript" className="space-y-2">
-            <div className="p-4 bg-slate-50 rounded-lg whitespace-pre-wrap text-sm">
+            <div className="p-4 bg-muted rounded-lg whitespace-pre-wrap text-sm">
               {call.transcript}
             </div>
           </TabsContent>
           <TabsContent value="analysis" className="space-y-4">
             <div>
-              <p className="text-slate-700 mb-2">Тональность разговора</p>
+              <p className="text-foreground mb-2">Тональность разговора</p>
               <Badge className={`${
                 call.sentiment === 'positive' ? 'bg-green-100 text-green-700' :
                 call.sentiment === 'negative' ? 'bg-red-100 text-red-700' :
-                'bg-slate-100 text-slate-700'
+                'bg-muted text-foreground'
               }`}>
                 {call.sentiment && sentimentConfig[call.sentiment] ? sentimentConfig[call.sentiment].label : 'Не определена'}
               </Badge>
             </div>
             <div>
-              <p className="text-slate-700 mb-2">Ключевые слова</p>
+              <p className="text-foreground mb-2">Ключевые слова</p>
               <div className="flex flex-wrap gap-2">
                 {call.keywords && call.keywords.map((keyword: string, index: number) => (
                   <Badge key={index} variant="outline">
