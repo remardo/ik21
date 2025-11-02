@@ -11,9 +11,9 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+      <header className="bg-card border-b border-border sticky top-0 z-50">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -21,8 +21,8 @@ export default function App() {
                 <Phone className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-slate-900">Коллекторская Система</h1>
-                <p className="text-slate-500 text-sm">Управление через Mastra</p>
+                <h1 className="text-foreground">Коллекторская Система</h1>
+                <p className="text-muted-foreground text-sm">Управление через Mastra</p>
               </div>
             </div>
             <div className="flex items-center gap-2">

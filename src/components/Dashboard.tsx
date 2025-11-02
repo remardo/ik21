@@ -47,8 +47,8 @@ export function Dashboard() {
             <CardContent className="pt-6">
               <div className="flex items-start justify-between">
                 <div className="space-y-2">
-                  <p className="text-slate-500 text-sm">{stat.title}</p>
-                  <p className="text-slate-900 text-3xl">{stat.value}</p>
+                  <p className="text-muted-foreground text-sm">{stat.title}</p>
+                  <p className="text-foreground text-3xl">{stat.value}</p>
                   <div className="flex items-center gap-1">
                     <TrendingUp className="w-4 h-4 text-green-600" />
                     <span className="text-green-600 text-sm">{stat.change}</span>
@@ -72,13 +72,13 @@ export function Dashboard() {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={callsData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="date" stroke="#64748b" />
-                <YAxis stroke="#64748b" />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="calls" stroke="#3b82f6" strokeWidth={2} name="Всего звонков" />
-                <Line type="monotone" dataKey="successful" stroke="#10b981" strokeWidth={2} name="Успешных" />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--muted-foreground)" />
+                <XAxis dataKey="date" stroke="var(--muted-foreground)" tick={{ fill: 'var(--muted-foreground)' }} />
+                <YAxis stroke="var(--muted-foreground)" tick={{ fill: 'var(--muted-foreground)' }} />
+                <Tooltip contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", color: "var(--popover-foreground)" }} />
+                <Legend wrapperStyle={{ color: "var(--muted-foreground)" }} />
+                <Line type="monotone" dataKey="calls" stroke="var(--chart-1)" strokeWidth={2} name="Всего звонков" />
+                <Line type="monotone" dataKey="successful" stroke="var(--chart-2)" strokeWidth={2} name="Успешных" />
               </LineChart>
             </ResponsiveContainer>
           </CardContent>
@@ -97,16 +97,19 @@ export function Dashboard() {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }: any) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percent, x, y, textAnchor }: any) => (
+                    <text x={x} y={y} textAnchor={textAnchor} fill="var(--muted-foreground)" fontSize={12}>
+                      {`${name}: ${(percent * 100).toFixed(0)}%`}
+                    </text>
+                  )}
                   outerRadius={80}
-                  fill="#8884d8"
                   dataKey="value"
                 >
-                  {statusData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  {statusData.map((_, index) => (
+                    <Cell key={`cell-${index}`} fill={`var(--chart-${(index % 5) + 1})`} />
                   ))}
                 </Pie>
-                <Tooltip />
+                <Tooltip contentStyle={{ background: "var(--popover)", border: "1px solid var(--border)", color: "var(--popover-foreground)" }} />
               </PieChart>
             </ResponsiveContainer>
           </CardContent>
@@ -124,13 +127,13 @@ export function Dashboard() {
               <div key={pipeline.name} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <code className="px-2 py-1 bg-slate-100 text-slate-800 rounded text-sm">
+                    <code className="px-2 py-1 bg-muted text-foreground rounded text-sm">
                       {pipeline.name}
                     </code>
                     <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
                       {pipeline.active} активных
                     </Badge>
-                    <Badge variant="outline" className="bg-slate-50 text-slate-600">
+                    <Badge variant="outline" className="bg-muted text-muted-foreground">
                       {pipeline.queued} в очереди
                     </Badge>
                   </div>
@@ -163,7 +166,7 @@ export function Dashboard() {
               { time: '13:52', event: 'Ошибка подключения к Asterisk ARI', status: 'error', icon: XCircle },
               { time: '13:45', event: 'Загружен новый файл должников (234 записи)', status: 'info', icon: Users },
             ].map((activity, index) => (
-              <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+              <div key={index} className="flex items-center gap-3 p-3 bg-muted rounded-lg">
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                   activity.status === 'success' ? 'bg-green-100' :
                   activity.status === 'error' ? 'bg-red-100' : 'bg-blue-100'
@@ -174,9 +177,9 @@ export function Dashboard() {
                   }`} />
                 </div>
                 <div className="flex-1">
-                  <p className="text-slate-900 text-sm">{activity.event}</p>
+                  <p className="text-foreground text-sm">{activity.event}</p>
                 </div>
-                <span className="text-slate-500 text-sm">{activity.time}</span>
+                <span className="text-muted-foreground text-sm">{activity.time}</span>
               </div>
             ))}
           </div>
